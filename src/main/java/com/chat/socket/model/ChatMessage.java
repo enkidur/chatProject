@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chat_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

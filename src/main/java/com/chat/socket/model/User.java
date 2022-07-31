@@ -16,13 +16,21 @@ public class User {
     Long id;
 
     private String username;
-    private String nickname;
-    private String password;
-    private String profileImage;
-    private String proflieBgimage;
-    private String userStatus;
-    private String encodeUsername;
+//    private String nickname;
+//    private String password;
+//    private String profileImage;
+//    private String proflieBgimage;
+//    private String userStatus;
+//    private String encodeUsername;
 
-    @OneToMany(mappedBy = "chatRoomEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "user")
+    private List<User> friends = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChatRoom> chatRoomList = new ArrayList<>();
 }

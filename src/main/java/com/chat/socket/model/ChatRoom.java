@@ -34,7 +34,7 @@ public class ChatRoom {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "chatRoomEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public ChatRoom(ChatRoomDTO chatRoomDTO) {
