@@ -16,14 +16,17 @@ public class StompChatController {
     //stompConfig 에서 설정한 applicationDestinationPrefixes 와 @MessageMapping 경로가 병합됨
     //"/pub/chat/enter"
     @MessageMapping(value = "/chat/enter")
-    public void enter(ChatMessageSaveDTO message) {
+    public String enter(ChatMessageSaveDTO message) {
         cs.enterChatRoom(message);
+        return "접속이 완료되었습니다";
     }
 
     @MessageMapping(value = "/chat/message")
-    public void message(ChatMessageSaveDTO message) {
+    public String message(ChatMessageSaveDTO message) {
         cs.sendChat(message);
+        return "접속이 완료되었습니다";
     }
+
 //    @MessageMapping 을 통해 WebSocket 으로 들어오는 메세지 발행을 처리한다.
 //    Client 에서는 prefix 를 붙여 "/pub/chat/enter"로 발행 요청을 하면
 //    Controller 가 해당 메세지를 받아 처리하는데,

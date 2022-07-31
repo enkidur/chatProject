@@ -10,6 +10,7 @@ import com.chat.socket.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class ChatService {
     private final SimpMessagingTemplate template; //특정 Broker로 메세지를 전달
     private final ChatRepository cr;
     private final ChatRoomRepository crr;
+    @Transactional
     public void enterChatRoom(ChatMessageSaveDTO message) {
         message.setMessage(message.getWriter() + "님이 채팅방에 참여하였습니다.");
 
@@ -35,7 +37,7 @@ public class ChatService {
                 .orElseThrow(() -> new RuntimeException("채팅방을 찾을 수 없습니다"));
         cr.save(ChatMessage.toChatEntity(message, chatRoom));
     }
-
+    @Transactional
     public void sendChat(ChatMessageSaveDTO message) {
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 
