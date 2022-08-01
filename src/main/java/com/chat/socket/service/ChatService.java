@@ -33,7 +33,7 @@ public class ChatService {
         }
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 
-        ChatRoom chatRoom = crr.findByRoomId(message.getRoomId())
+        ChatRoom chatRoom = crr.findByRoomIdAndAndUser_Username(message.getRoomId(), message.getWriter())
                 .orElseThrow(() -> new RuntimeException("채팅방을 찾을 수 없습니다"));
         cr.save(ChatMessage.toChatEntity(message, chatRoom));
     }
@@ -42,7 +42,7 @@ public class ChatService {
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 
         // DB에 채팅내용 저장
-        ChatRoom chatRoom = crr.findByRoomId(message.getRoomId())
+        ChatRoom chatRoom = crr.findByRoomIdAndAndUser_Username(message.getRoomId(), message.getWriter())
                 .orElseThrow(() -> new RuntimeException("채팅방을 찾을 수 없습니다"));
         ChatMessageSaveDTO chatMessageSaveDTO = new ChatMessageSaveDTO(message.getRoomId(),message.getWriter(), message.getMessage());
         cr.save(ChatMessage.toChatEntity(chatMessageSaveDTO,chatRoom));

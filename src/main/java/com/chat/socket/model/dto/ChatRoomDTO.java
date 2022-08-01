@@ -21,8 +21,8 @@ public class ChatRoomDTO {
     private Set<WebSocketSession> sessions = new HashSet<>();
 
     //WebSocketSession 은 Spring 에서 Websocket Connection 이 맺어진 세션
-    public ChatRoomDTO(String participants, String name) {
-        this.roomId = UUID.randomUUID().toString();
+    public ChatRoomDTO(String roomId, String participants, String name) {
+        this.roomId = roomId;
         this.participants = participants;
         this.name = name;
     }

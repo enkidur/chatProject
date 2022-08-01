@@ -48,8 +48,6 @@ public class ChatRoom {
         user.getChatRoomList().add(this);
     }
 
-
-
 //    public static ChatRoom toChatRoomEntity(String roomName, String roomId){
 //        ChatRoom chatRoom = new ChatRoom();
 //        chatRoom.setRoomName(roomName);

@@ -15,7 +15,6 @@ import java.util.List;
 public class ChatHandler extends TextWebSocketHandler {
 
     private static List<WebSocketSession> list = new ArrayList<>();
-
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
@@ -25,7 +24,6 @@ public class ChatHandler extends TextWebSocketHandler {
             sess.sendMessage(message);
         }
     }
-
     /* Client가 접속 시 호출되는 메서드 */
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
